@@ -96,7 +96,7 @@ A pesar de que la idea principal del algoritmo —dividir y luego unir— es rel
 
 ## Casos de Uso — ¿Cuándo es mejor usarlo?
 
-La Mezcla Directa brilla en los siguientes escenarios:
+La Mezcla Directa es util en los siguientes escenarios:
 
 - **Datos en listas enlazadas:** No requiere acceso aleatorio, lo que lo hace ideal para estructuras secuenciales.
 - **Grandes volúmenes de datos:** Su complejidad garantizada de $O(n \log n)$ lo hace predecible y confiable sin importar el orden inicial.
@@ -108,8 +108,7 @@ La Mezcla Directa brilla en los siguientes escenarios:
 
 ## Comparativa Teórica: Mezcla Directa vs. QuickSort
 
-Comparativa Teórica: Mezcla Directa vs.QuickSort
-Conclusión de la comparativa
+
 Ambos algoritmos tienen una complejidad promedio deO(norteregistro⁡norte)O(n \log n)
 En​​registro​n ), lo que los coloca en la misma categoría de eficiencia para el caso general. Sin embargo, difieren significativamente en el peor caso:
 
