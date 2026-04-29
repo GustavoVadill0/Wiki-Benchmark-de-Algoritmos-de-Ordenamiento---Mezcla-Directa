@@ -1,5 +1,5 @@
 # MEZCLA DIRECTA
-
+ 
 ## ¿QUÉ ES?
 
 Es un algoritmo de ordenamiento externo que organiza grandes volúmenes de datos dividiéndolos en sublistas de tamaño fijo, las cuales se ordenan y fusionan repetidamente en bloques cada vez mayores. Es un método fundamental de ordenación externa que utiliza archivos auxiliares para gestionar datos que no caben en la memoria principal.
@@ -74,12 +74,80 @@ Aunque el algoritmo es muy eficiente en términos generales, no siempre es la me
 
 A pesar de que la idea principal del algoritmo —dividir y luego unir— es relativamente sencilla de entender, su implementación puede resultar más complicada que la de otros métodos de ordenamiento básicos. Esto es especialmente cierto cuando se intenta desarrollar una versión no recursiva o cuando se busca optimizar el uso de memoria. Manejar correctamente las divisiones, fusiones y el control de índices requiere mayor cuidado, lo que puede dificultar su programación para quienes no tienen mucha experiencia.
 
+
+
+## Análisis de Complejidad — $O(n \log n)$
+
+| Caso        | Tiempo         | Espacio      |
+|-------------|----------------|--------------|
+| Mejor caso  | $O(n \log n)$  | $O(n)$       |
+| Caso medio  | $O(n \log n)$  | $O(n)$       |
+| Peor caso   | $O(n \log n)$  | $O(n)$       |
+
+### ¿Por qué $O(n \log n)$?
+
+- El arreglo se divide en mitades en cada nivel → $\log n$ niveles de recursión.
+- En cada nivel se recorre la totalidad de los elementos para mezclarlos → $O(n)$ por nivel.
+- En total: $O(n) \times O(\log n) = O(n \log n)$.
+
+> **Espacio auxiliar $O(n)$:** Requiere un arreglo temporal para realizar la mezcla, por lo que **no es un algoritmo in-place**.
+
 ---
+
+## Casos de Uso — ¿Cuándo es mejor usarlo?
+
+La Mezcla Directa brilla en los siguientes escenarios:
+
+- **Datos en listas enlazadas:** No requiere acceso aleatorio, lo que lo hace ideal para estructuras secuenciales.
+- **Grandes volúmenes de datos:** Su complejidad garantizada de $O(n \log n)$ lo hace predecible y confiable sin importar el orden inicial.
+- **Ordenamiento externo:** Cuando los datos no caben en memoria RAM y se trabaja con archivos en disco, Merge Sort es el algoritmo base de la mayoría de los sistemas de ordenamiento externo.
+- **Cuando se requiere estabilidad:** Mantiene el orden relativo de elementos con claves iguales (es un algoritmo **estable**).
+- **Datos casi ordenados en sentido inverso:** A diferencia de QuickSort, no degrada su rendimiento en ningún caso particular.
+
+---
+
+## Comparativa Teórica: Mezcla Directa vs. QuickSort
+
+Comparativa Teórica: Mezcla Directa vs.QuickSort
+Conclusión de la comparativa
+Ambos algoritmos tienen una complejidad promedio deO(norteregistro⁡norte)O(n \log n)
+En​​registro​n ), lo que los coloca en la misma categoría de eficiencia para el caso general. Sin embargo, difieren significativamente en el peor caso:
+
+Mezcla Directa cuando necesites un comportamiento garantizado en el peor caso, estabilidad, o trabajes con listas enlazadas y ordenamiento externo.O(norteregistro⁡norte)O(n \log n)
+En​​registro​n )incluso en el peor caso, porque la división del arreglo siempre se hace en mitades exactas, sin depender del contenido de los datos.
+Ordenación rápida cuando trabajas con arreglos en memoria y prioridades de velocidad práctica, ya que su menor uso de espacio y mejor aprovechamiento de caché lo hacen más rápido en la mayoría de los casos reales.O(norte2)O(n^2)
+En​​2)en el peor caso (por ejemplo, cuando el pivote elegido es siempre el elemento mínimo o máximo), lo que lo hace menos predecible si no se usa una estrategia de selección de pivote adecuada.
+
+2. Uso de memoria (espacio auxiliar)
+
+Mezcla Directa requiere un arreglo auxiliar de tamañoO(norte)En)
+En )​​para realizar la mezcla de los subarreglos. Esto significa que consume memoria adicional proporcional al tamaño de la entrada, lo que puede ser una desventaja en entornos con memoria limitada.
+QuickSort opera principalmente sobre el mismo arreglo (in-place), utilizando soloO(registro⁡norte)O(\log n)
+O ( log​n )de espacio en la pila de llamadas recursivas. Esto lo hace más eficiente en consumo de memoria.
+
+3. Estabilidad
+Un algoritmo de ordenamiento es estable cuando mantiene el orden relativo de elementos que tienen la misma clave.
+
+Mezcla Directa es estable : si dos elementos son iguales, el que apareció primero en el arreglo original seguirá apareciendo primero en el resultado. Esto es importante en aplicaciones donde el orden secundario tiene significado (por ejemplo, ordenar una lista de personas primero por apellido y luego por nombre).
+QuickSort no es estable en su versión básica: puede intercambiar elementos iguales de lugar, alterando su orden relativo original.
+
+4. Rendimiento con listas enlazadas
+
+Mezcla Directa es el algoritmo preferido para ordenar listas enlazadas. No necesita acceso aleatorio a los elementos (solo necesita recorrerlos secuencialmente), por lo que se adapta perfectamente a esta estructura.
+QuickSort es poco eficiente con listas enlazadas porque su funcionamiento depende del acceso directo a posiciones del arreglo para realizar los intercambios, algo que no es eficiente en una lista enlazada.
+
+5. Rendimiento con arreglos y aprovechamiento de caché
+
+QuickSort suele ser más rápido en la práctica cuando se trabaja con arreglos en memoria RAM. Esto se debe a que acceda a posiciones contiguas de memoria con frecuencia, lo que aprovecha mejor la caché del procesador (principio de localidad espacial).
+Mezcla Directa accede a dos subarreglos distintos durante la mezcla, lo que genera más "saltos" en memoria y es menos amigable con la caché, resultando en un rendimiento práctico un poco menor aunque su complejidad teórica sea igual.
+
+
 
 ### EJEMPLO EN PYTHON
 
 ```python
-def mezcla_directa(lista):
+def mezcla_directa(lista):[README.md](https://github.com/user-attachments/files/27208511/README.md)
+
     # Caso base: si la lista está vacía o tiene un elemento, ya está ordenada
     if len(lista) <= 1:
         return lista
