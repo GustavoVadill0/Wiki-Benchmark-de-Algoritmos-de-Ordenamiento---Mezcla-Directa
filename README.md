@@ -90,7 +90,6 @@ A pesar de que la idea principal del algoritmo —dividir y luego unir— es rel
 - En cada nivel se recorre la totalidad de los elementos para mezclarlos → $O(n)$ por nivel.
 - En total: $O(n) \times O(\log n) = O(n \log n)$.
 
-> **Espacio auxiliar $O(n)$:** Requiere un arreglo temporal para realizar la mezcla, por lo que **no es un algoritmo in-place**.
 
 ---
 
